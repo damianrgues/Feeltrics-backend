@@ -73,8 +73,19 @@ router.put('/:metricId', (req, res) => {
 router.get('/today/:userId', (req, res) => {
   const {userId} = req.params;
   
+  // Users.find({date: {$gte: new Date(2014, 0, 1), $lt: new Date(2014, 1, 1)}})
+  //   .sort('date').exec(callback);
+const today = new Date();
+const day =today.getDay();
+const month= today.getMonth();
+const year= today.getFullYear(); 
 
-  Metric.find({ user_id: userId })
+
+console.log(typeof year)
+console.log(typeof day)
+console.log(typeof month)
+
+  Metric.find({ created_at: { $gte: new Date(year, month, day) }})
     .then((metrics)=>{
       console.log("metrics" ,metrics )
 

@@ -8,7 +8,16 @@ const metricSchema = new Schema({
   value: Number,
   date: [{Date}]
   
-});
+},
+{ 
+  timestamps: { 
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
+}
+);
+
+
 
 const Metric = mongoose.model('Metric', metricSchema);
 
